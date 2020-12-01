@@ -1,11 +1,11 @@
 import '../styles/index.scss'
-import { Point } from './point'
+import { Ball } from './ball'
 
 if (process.env.NODE_ENV === 'development') {
   require('../index.html')
 }
 
-console.log('imported Point', Point)
+console.log('imported Ball', Ball)
 
 class App {
   constructor () {
@@ -15,6 +15,8 @@ class App {
 
     window.addEventListener('resize', this.resize.bind(this), false)
     this.resize()
+
+    this.ball = new Ball(60, 1)
 
     window.requestAnimationFrame(this.animate.bind(this))
   }
@@ -31,6 +33,8 @@ class App {
   animate (t) {
     this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight)
     window.requestAnimationFrame(this.animate.bind(this))
+
+    this.ball.draw(this.ctx, this.stageWidth, this.stageHeight)
   }
 }
 
